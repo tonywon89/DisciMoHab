@@ -4,10 +4,10 @@ The social app that allows a supportive, communicative environment for self impr
 
 ## Phase 0: Set up the environment
 - [x] Initialize the commit
-- [ ] Set up a static page
-- [ ] Organize folder structures
-  - [ ] For react
-  - [ ] For server items
+- [x] Set up a static page
+- [x] Organize folder structures
+  - [x] For react
+  - [x] For server items
 
 ## Phase I: User Authentication
 - [ ] Set up database
