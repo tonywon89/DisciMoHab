@@ -1,5 +1,5 @@
 var React = require("react");
-
+var axios = require("axios");
 var SignUpForm = React.createClass({
   getInitialState: function () {
     return { username: "", password: "", passwordConfirm: "" };
@@ -19,7 +19,13 @@ var SignUpForm = React.createClass({
 
   handleSubmit: function (event) {
     event.preventDefault();
-    
+    axios.post("/users/register", {
+      username: this.state.username,
+      password: this.state.password
+    })
+    .then(function(res) {
+      console.log(res);
+    });
   },
 
   render: function () {

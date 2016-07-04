@@ -2,7 +2,7 @@ var promise = require('bluebird');
 
 var options = {
   promiseLib: promise
-}
+};
 
 var pgp = require('pg-promise')(options);
 var connectionString = require("../../config.js");
@@ -16,4 +16,15 @@ module.exports.findByUsername = function (username, callback) {
   .catch(function (err) {
     return callback(err, null);
   });
+};
+
+module.exports.registerUser = function (username, passwordDigest, callback) {
+  db.oneOrNone('insert into users (username, password_digest) values (${username}, ${password})', {username: username, password: passwordDigest} )
+    .then(function() {
+      callback();
+    })
+    .catch(function (err) {
+      console.log(err);
+      return callback(err);
+    });
 };

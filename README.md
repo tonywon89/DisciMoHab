@@ -15,7 +15,8 @@ The social app that allows a supportive, communicative environment for self impr
 - [ ] Set up routes for authentication, including sign up and log in and log out
   - [ ] Use passport-local
 - [ ] Figure out front end authentication
-  - [ ] Setup browswer history
+  - [ ] Setup browser history instead of hashHistory
+    - [ ] Make sure refreshing the page still works
   - [ ] Create a modal for the log in
   - [ ] Learn Redux and get it set up
 - [ ] Add OAuth
