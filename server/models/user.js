@@ -9,6 +9,7 @@ var connectionString = require("../../config.js");
 var db = pgp(connectionString);
 
 module.exports.findByUsername = function (username, callback) {
+  console.log(username);
   db.one('select * from users where username = $1', username)
   .then(function(data) {
     callback(null, data);
@@ -16,6 +17,16 @@ module.exports.findByUsername = function (username, callback) {
   .catch(function (err) {
     return callback(err, null);
   });
+};
+
+module.exports.findById = function(id, callback) {
+  db.one('select * from users where id = $1', id)
+    .then(function(data) {
+      callback(null, data);
+    })
+    .catch(function (err) {
+      return callback(err, null);
+    });
 };
 
 module.exports.registerUser = function (username, passwordDigest, callback) {

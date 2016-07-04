@@ -1,4 +1,5 @@
 var React = require("react");
+var axios = require("axios");
 
 var LoginForm = React.createClass({
   getInitialState: function () {
@@ -16,7 +17,22 @@ var LoginForm = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault();
 
-    alert(`There has been a login ${this.state.username}, ${this.state.password}`);
+    // axios.post('/users/login', {
+    //     username: this.state.username,
+    //     password: this.state.password
+    //   }
+    // )
+    axios({
+      method: 'post',
+      url: "/users/login",
+      data: {
+        username: this.state.username,
+        password: this.state.password
+      }
+    })
+    .then(function(res) {
+      console.log(res);
+    });
   },
 
   render: function () {

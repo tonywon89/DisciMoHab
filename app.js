@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var bcrypt = require("bcrypt");
 
 var routes = require('./server/routes/index');
 var users = require('./server/routes/users');
@@ -21,6 +22,54 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './client', 'public')));
+
+
+var User = require("./server/models/user.js");
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findByUsername(username, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false); }
+      if (!bcrypt.compareSync(password, user.password_digest)) {
+        return done(null, false);
+      }
+      // console.log(user);
+      return done(null, user);
+    });
+  }
+));
+
+var session = require('express-session');
+app.use(session({
+  secret: "Discimohab",
+  resave: true,
+  saveUnitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  // placeholder for custom user serialization
+  // null is for errors
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  // placeholder for custom user deserialization.
+  // maybe you are going to get the user from mongo by id?
+  // null is for errors
+  User.findById(id, function (err, user) {
+    if (err) { return done(err); }
+    done(null, user);
+  });
+});
 
 app.use('/', routes);
 app.use('/users', users);

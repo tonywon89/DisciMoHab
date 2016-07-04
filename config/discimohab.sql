@@ -5,6 +5,6 @@ CREATE DATABASE discimohab;
 
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
-  username VARCHAR,
-  password_digest VARCHAR
+  username VARCHAR UNIQUE NOT NULL,
+  password_digest VARCHAR NOT NULL
 );

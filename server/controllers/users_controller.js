@@ -9,6 +9,10 @@ var UsersController = {
         res.send("A user has successfully been created!");
       });
     });
+  },
+
+  login: function (req, res) {
+    res.send("A USER HAS BEEN LOGGED IN!");
   }
 };
 
