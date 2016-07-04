@@ -1,8 +1,8 @@
 module.exports = {
   context: __dirname,
-  entry: "./hello_world.jsx",
+  entry: "./client/react_items/entry.jsx",
   output: {
-    path: "./",
+    path: "./client/public/javascripts",
     filename: "bundle.js"
   },
   module: {

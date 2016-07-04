@@ -3,7 +3,7 @@
 The social app that allows a supportive, communicative environment for self improvement
 
 ## Phase 0: Set up the environment
-- [ ] Initialize the commit
+- [x] Initialize the commit
 - [ ] Set up a static page
 - [ ] Organize folder structures
   - [ ] For react
