@@ -17,7 +17,6 @@ var LoginForm = React.createClass({
            />
       </form>
     );
-
   }
 });
 
