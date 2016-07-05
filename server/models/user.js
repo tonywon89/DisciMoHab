@@ -9,7 +9,6 @@ var connectionString = require("../../config.js");
 var db = pgp(connectionString);
 
 module.exports.findByUsername = function (username, callback) {
-  console.log(username);
   db.one('select * from users where username = $1', username)
   .then(function(data) {
     callback(null, data);

@@ -9,7 +9,12 @@ router.get('/', function(req, res, next) {
 });
 
 // TODO: Login the user after signing up
-router.post('/register', UsersController.createUser);
+router.post(
+  '/register',
+  UsersController.createUser,
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  UsersController.login
+);
 
 router.post(
   '/login',

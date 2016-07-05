@@ -40,7 +40,7 @@ passport.use(new LocalStrategy(
         return done(null, false);
       }
       // console.log(user);
-      return done(null, user);
+      return done(null, { id: user.id, username: user.username });
     });
   }
 ));
@@ -71,6 +71,8 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+//These need to go after the passport initialize for the middleware
+//to work properly
 app.use('/', routes);
 app.use('/users', users);
 

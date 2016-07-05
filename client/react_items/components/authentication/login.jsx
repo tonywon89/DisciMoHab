@@ -17,11 +17,6 @@ var LoginForm = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault();
 
-    // axios.post('/users/login', {
-    //     username: this.state.username,
-    //     password: this.state.password
-    //   }
-    // )
     axios({
       method: 'post',
       url: "/users/login",
